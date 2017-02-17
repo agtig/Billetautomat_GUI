@@ -44,9 +44,10 @@ public class Billetautomat {
 	 * Opdater total og nedskriv balancen med billetprisen
 	 */
 	public void udskrivBillet() {
-		if (balance<10) {
+		if (balance<10) {   // tjek at der er penge til en billet
 			System.out.println("Du mangler at indbetale nogle penge");
 		}
+                else {              // print kun en billet ud, hvis der er penge nok
 		System.out.println("##########B##T#########");
 		System.out.println("# BlueJ Trafikselskab #");
 		System.out.println("#                     #");
@@ -60,6 +61,7 @@ public class Billetautomat {
 
 		antalBilletterSolgt = antalBilletterSolgt + 1;
 		balance = balance - billetpris; // Billetter koster 10 kroner
+                }
 	}
 
 
