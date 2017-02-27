@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package automat;
-
+import java.util.Date;
 /**
  *
  * @author ms
  */
 public class Log {
+    Date tid;
+    String handling;
+    double beløb;
     
 }
