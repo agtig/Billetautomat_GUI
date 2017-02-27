@@ -9,9 +9,14 @@ import java.util.Date;
  *
  * @author ms
  */
-public class Log {
+class Log {
     Date tid;
     String handling;
-    double beløb;
+    double billetPrisNu;
+    double balanceNu;
+    int solgteBilletterNu;
+    double indsatBeløb;
+    double udbetaltBeløb;
+    
     
 }

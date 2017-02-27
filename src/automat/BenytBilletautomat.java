@@ -11,7 +11,6 @@ public class BenytBilletautomat
 
 		System.out.println("BenytBilletautomat version 3");
 		System.out.println();
-		
 		while (true) {
 			System.out.println("-----------------------------------------------");
 			System.out.println("En billet koster " + automat.getBilletpris() + " kroner");
