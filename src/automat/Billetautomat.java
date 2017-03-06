@@ -111,7 +111,11 @@ public class Billetautomat {
                 }
 	}
 
-	public int returpenge() {
+        /**
+         * Udbetal balancen
+         * @return returbeløb
+         */
+        public int returpenge() {
 		int returbeløb = balance;
 		balance = 0;
 		System.out.println("Du får "+returbeløb+" kr retur");
@@ -127,6 +131,10 @@ public class Billetautomat {
 		return returbeløb;
 	}
 	
+        /**
+         * Login som montør
+         * @param adgangskode 
+         */
 	void montørLogin(String adgangskode) {
 		if ("1234".equals(adgangskode)) {
 			montørtilstand = true;
@@ -154,6 +162,10 @@ public class Billetautomat {
 		}
 	}
 
+        /**
+         * Udskriv total
+         * @return 0
+         */
 	public int getTotal() {
 		if (montørtilstand) {
 			return billetpris * antalBilletterSolgt;
@@ -163,6 +175,11 @@ public class Billetautomat {
 		}
 	}
 
+        /**
+         * Udskriv antal solgte billetter
+         * Kræver montørtilstand
+         * @return 0
+         */
 	public int getAntalBilletterSolgt() {
 		if (montørtilstand) {
 			return antalBilletterSolgt;
@@ -172,6 +189,10 @@ public class Billetautomat {
 		}
 	}
 
+        /**
+         * Sæt ny billetpris
+         * @param billetpris 
+         */
 	public void setBilletpris(int billetpris) {
 		this.billetpris = billetpris;
                 Log nyLog = new Log();
@@ -183,6 +204,9 @@ public class Billetautomat {
                 log.add(nyLog);
 	}
 
+        /**
+         * Nulstil antal solgte billetter
+         */
 	public void nulstil() {
 		if (montørtilstand) {
 			antalBilletterSolgt = 0;
@@ -198,6 +222,10 @@ public class Billetautomat {
 		}
 	}
 
+        /**
+         * Sæt et specifikt antal solgte billetter
+         * @param antalBilletterSolgt 
+         */
 	public void setAntalBilletterSolgt(int antalBilletterSolgt) {
 		if (montørtilstand) {
 			this.antalBilletterSolgt = antalBilletterSolgt;
@@ -213,6 +241,10 @@ public class Billetautomat {
 		}
 	}
 
+        /**
+         * Tjek om montørtilstand er aktiv
+         * @return montørtilstand (boolean)
+         */
 	public boolean erMontør() {
 		return montørtilstand;
 	}
