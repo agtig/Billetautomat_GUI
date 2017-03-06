@@ -7,29 +7,31 @@ import java.util.Date;
  * Model af en simpel billetautomat til enkeltbilletter med én fast pris.
  */
 public class Billetautomat {
-	private int billetpris;    // Prisen for én billet.
-	private int balance; // Hvor mange penge kunden p.t. har puttet i automaten
-	private int antalBilletterSolgt; // Antal billetter automaten i alt har solgt
-	private boolean montørtilstand;
-        //private ArrayList<String> log = new ArrayList<String>();
-        private ArrayList<Log> log = new ArrayList<Log>();
+	private int billetpris;                             // Prisen for én billet.
+	private int balance;                                // Hvor mange penge kunden p.t. har puttet i automaten
+	private int antalBilletterSolgt;                    // Antal billetter automaten i alt har solgt
+	private boolean montørtilstand;                     // Declarer
+        private ArrayList<Log> log = new ArrayList<Log>();  // Declarer log-array
 
 	/**
 	 * Opret en billetautomat der sælger billetter til 10 kr.
 	 */
 	public Billetautomat() {
-		billetpris = 10;
-		balance = 0;
-		antalBilletterSolgt = 0;
-                Log nyLog = new Log();
-                nyLog.tid = new Date();
-                nyLog.handling =  "Billetautomaten er startet.";
-                nyLog.billetPrisNu = billetpris;
-                nyLog.balanceNu = balance;
-                nyLog.solgteBilletterNu = antalBilletterSolgt;
-                log.add(nyLog);
+		billetpris = 10;                                // Sæt billetprisen
+		balance = 0;                                    // Nulstil balancen
+		antalBilletterSolgt = 0;                        // Nulstil antal solgte billetter
+                Log nyLog = new Log();                          // Start en log
+                nyLog.tid = new Date();                         // Log tid og dato for start af automaten
+                nyLog.handling =  "Billetautomaten er startet.";// Skriv til log
+                nyLog.billetPrisNu = billetpris;                // Log billetpris
+                nyLog.balanceNu = balance;                      // Log balancen
+                nyLog.solgteBilletterNu = antalBilletterSolgt;  // Log antal solgte billetter
+                log.add(nyLog);                                 // Skriv til log
 	}
         
+        /**
+         * Udskriv log til skærm
+         */
         public void udskrivLog() {
             if (montørtilstand) {
                 System.out.println("========== log pr " + new Date());
@@ -47,7 +49,7 @@ public class Billetautomat {
         }
 
 	/**
-	 * Giver prisen for en billet. 
+	 * Returnerer prisen for en billet. 
 	 */
 	public int getBilletpris() {
 		int resultat = billetpris;
@@ -109,7 +111,6 @@ public class Billetautomat {
                 }
 	}
 
-
 	public int returpenge() {
 		int returbeløb = balance;
 		balance = 0;
@@ -125,7 +126,6 @@ public class Billetautomat {
                 log.add(nyLog);
 		return returbeløb;
 	}
-
 	
 	void montørLogin(String adgangskode) {
 		if ("1234".equals(adgangskode)) {
@@ -153,7 +153,6 @@ public class Billetautomat {
                 log.add(nyLog);
 		}
 	}
-
 
 	public int getTotal() {
 		if (montørtilstand) {
