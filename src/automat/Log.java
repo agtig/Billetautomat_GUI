@@ -10,13 +10,11 @@ import java.util.Date;
  * @author ms
  */
 class Log {
-    Date tid;
-    String handling;
-    double billetPrisNu;
-    double balanceNu;
-    int solgteBilletterNu;
-    double indsatBeløb;
-    double udbetaltBeløb;
-    
-    
+    public Date tid;
+    public String handling;
+    public double billetPrisNu;
+    public double balanceNu;
+    public int solgteBilletterNu;
+    public double indsatBeløb;
+    public double udbetaltBeløb; 
 }
