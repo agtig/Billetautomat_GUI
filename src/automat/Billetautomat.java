@@ -17,16 +17,16 @@ public class Billetautomat {
 	 * Opret en billetautomat der sælger billetter til 10 kr.
 	 */
 	public Billetautomat() {
-		billetpris = 10;                                // Sæt billetprisen
-		balance = 0;                                    // Nulstil balancen
-		antalBilletterSolgt = 0;                        // Nulstil antal solgte billetter
-                Log nyLog = new Log();                          // Start en log
-                nyLog.tid = new Date();                         // Log tid og dato for start af automaten
-                nyLog.handling =  "Billetautomaten er startet.";// Skriv til log
-                nyLog.billetPrisNu = billetpris;                // Log billetpris
-                nyLog.balanceNu = balance;                      // Log balancen
-                nyLog.solgteBilletterNu = antalBilletterSolgt;  // Log antal solgte billetter
-                log.add(nyLog);                                 // Skriv til log
+            billetpris = 10;                                // Sæt billetprisen
+            balance = 0;                                    // Nulstil balancen
+            antalBilletterSolgt = 0;                        // Nulstil antal solgte billetter
+            Log nyLog = new Log();                          // Start en log
+            nyLog.tid = new Date();                         // Log tid og dato for start af automaten
+            nyLog.handling =  "Billetautomaten er startet.";// Skriv til log
+            nyLog.billetPrisNu = billetpris;                // Log billetpris
+            nyLog.balanceNu = balance;                      // Log balancen
+            nyLog.solgteBilletterNu = antalBilletterSolgt;  // Log antal solgte billetter
+            log.add(nyLog);                                 // Skriv til log
 	}
         
         /**
@@ -52,14 +52,16 @@ public class Billetautomat {
 	 * Returnerer prisen for en billet. 
 	 */
 	public int getBilletpris() {
-		int resultat = billetpris;
-		return resultat;
+            int resultat = billetpris;
+            return resultat;
 	}
 
 	/**
 	 * Modtag nogle penge (i kroner) fra en kunde.
 	 */
 	public void indsætPenge(int beløb) {
+            
+            if(beløb >= 0){
 		balance = balance + beløb;
                 Log nyLog = new Log();
                 nyLog.tid = new Date();
@@ -69,13 +71,16 @@ public class Billetautomat {
                 nyLog.solgteBilletterNu = antalBilletterSolgt;
                 nyLog.indsatBeløb = beløb;
                 log.add(nyLog);
-	}
+            }else{
+                System.out.println("Du kan ikke indsætte et negativt beløb");
+            }
+	} //end insætPenge
 
 	/**
 	 * Giver balancen (beløbet maskinen har modtaget til den næste billet).
 	 */
 	public int getBalance() {
-		return balance;
+            return balance;
 	}
 
 	/**
@@ -83,24 +88,24 @@ public class Billetautomat {
 	 * Opdater total og nedskriv balancen med billetprisen
 	 */
 	public void udskrivBillet() {
-		if (balance<billetpris) {   // tjek at der er penge til en billet
-			System.out.println("Du mangler at indbetale nogle penge");
-                //        log.add(new Date() + ": Der blev forsøgt at købe en billet, men balancen var for lille.");
-		}
-                else {              // print kun en billet ud, hvis der er penge nok
-		System.out.println("##########B##T#########");
-		System.out.println("# BlueJ Trafikselskab #");
-		System.out.println("#                     #");
-		System.out.println("#        Billet       #");
-		System.out.println("#        " + billetpris + " kr.       #");
-		System.out.println("#                     #");
-		System.out.println("##########B##T#########");
-		System.out.println("# Du har " + (balance-billetpris) + " kr til gode       #");
-		System.out.println("##########B##T#########");
-		System.out.println();
+            if (balance<billetpris) {   // tjek at der er penge til en billet
+                System.out.println("Du mangler at indbetale nogle penge");
+            //        log.add(new Date() + ": Der blev forsøgt at købe en billet, men balancen var for lille.");
+            }
+            else {              // print kun en billet ud, hvis der er penge nok
+                System.out.println("##########B##T#########");
+                System.out.println("# BlueJ Trafikselskab #");
+                System.out.println("#                     #");
+                System.out.println("#        Billet       #");
+                System.out.println("#        " + billetpris + " kr.       #");
+                System.out.println("#                     #");
+                System.out.println("##########B##T#########");
+                System.out.println("# Du har " + (balance-billetpris) + " kr til gode       #");
+                System.out.println("##########B##T#########");
+                System.out.println();
 
-		antalBilletterSolgt = antalBilletterSolgt + 1;
-		balance = balance - billetpris; // Billetter koster 10 kroner
+                antalBilletterSolgt = antalBilletterSolgt + 1;
+                balance = balance - billetpris; // Billetter koster 10 kroner
                 Log nyLog = new Log();
                 nyLog.tid = new Date();
                 nyLog.handling = ("Der er udstedt en billet.");
@@ -108,7 +113,7 @@ public class Billetautomat {
                 nyLog.balanceNu = balance;
                 nyLog.solgteBilletterNu = antalBilletterSolgt;
                 log.add(nyLog);
-                }
+            }
 	}
 
         /**
@@ -116,19 +121,19 @@ public class Billetautomat {
          * @return returbeløb
          */
         public int returpenge() {
-		int returbeløb = balance;
-		balance = 0;
-		System.out.println("Du får "+returbeløb+" kr retur");
-                //log.add(new Date() + ": Der er udbetalt " + returbeløb + "kr. "
-                Log nyLog = new Log();
-                nyLog.tid = new Date();
-                nyLog.handling = ("Der er udbetalt " + returbeløb + " kr.");
-                nyLog.billetPrisNu = billetpris;
-                nyLog.balanceNu = balance;
-                nyLog.solgteBilletterNu = antalBilletterSolgt;
-                nyLog.udbetaltBeløb = returbeløb;
-                log.add(nyLog);
-		return returbeløb;
+            int returbeløb = balance;
+            balance = 0;
+            System.out.println("Du får "+returbeløb+" kr retur");
+            //log.add(new Date() + ": Der er udbetalt " + returbeløb + "kr. "
+            Log nyLog = new Log();
+            nyLog.tid = new Date();
+            nyLog.handling = ("Der er udbetalt " + returbeløb + " kr.");
+            nyLog.billetPrisNu = billetpris;
+            nyLog.balanceNu = balance;
+            nyLog.solgteBilletterNu = antalBilletterSolgt;
+            nyLog.udbetaltBeløb = returbeløb;
+            log.add(nyLog);
+            return returbeløb;
 	}
 	
         /**
@@ -136,11 +141,11 @@ public class Billetautomat {
          * @param adgangskode 
          */
 	void montørLogin(String adgangskode) {
-		if ("1234".equals(adgangskode)) {
-			montørtilstand = true;
-			System.out.println("Montørtilstand aktiveret");
-			System.out.println("Du kan nu angive billetpris");
-                //        log.add(new Date() + ": Montør logget ind.");
+            if ("1234".equals(adgangskode)) {
+                montørtilstand = true;
+                System.out.println("Montørtilstand aktiveret");
+                System.out.println("Du kan nu angive billetpris");
+        //        log.add(new Date() + ": Montør logget ind.");
                 Log nyLog = new Log();
                 nyLog.tid = new Date();
                 nyLog.handling = ("Montør er logget ind.");
@@ -148,10 +153,10 @@ public class Billetautomat {
                 nyLog.balanceNu = balance;
                 nyLog.solgteBilletterNu = antalBilletterSolgt;
                 log.add(nyLog);
-		} else {
-			montørtilstand = false;
-			System.out.println("Montørtilstand deaktiveret");
-                //        log.add(new Date() + ": Montør logget ud.");
+            } else {
+                montørtilstand = false;
+                System.out.println("Montørtilstand deaktiveret");
+        //        log.add(new Date() + ": Montør logget ud.");
                 Log nyLog = new Log();
                 nyLog.tid = new Date();
                 nyLog.handling = ("Montør er logget ud.");
@@ -159,7 +164,7 @@ public class Billetautomat {
                 nyLog.balanceNu = balance;
                 nyLog.solgteBilletterNu = antalBilletterSolgt;
                 log.add(nyLog);
-		}
+            }
 	}
 
         /**
@@ -167,12 +172,12 @@ public class Billetautomat {
          * @return 0
          */
 	public int getTotal() {
-		if (montørtilstand) {
-			return billetpris * antalBilletterSolgt;
-		} else {
-			System.out.println("Afvist - log ind først");
-			return 0;
-		}
+            if (montørtilstand) {
+                    return billetpris * antalBilletterSolgt;
+            } else {
+                    System.out.println("Afvist - log ind først");
+                    return 0;
+            }
 	}
 
         /**
@@ -181,12 +186,12 @@ public class Billetautomat {
          * @return 0
          */
 	public int getAntalBilletterSolgt() {
-		if (montørtilstand) {
-			return antalBilletterSolgt;
-		} else {
-			System.out.println("Afvist - log ind først");
-			return 0;
-		}
+            if (montørtilstand) {
+                    return antalBilletterSolgt;
+            } else {
+                    System.out.println("Afvist - log ind først");
+                    return 0;
+            }
 	}
 
         /**
@@ -194,7 +199,8 @@ public class Billetautomat {
          * @param billetpris 
          */
 	public void setBilletpris(int billetpris) {
-		this.billetpris = billetpris;
+            if (montørtilstand) {
+                this.billetpris = billetpris;
                 Log nyLog = new Log();
                 nyLog.tid = new Date();
                 nyLog.handling = ("Ny billetpris er angivet til: " + this.billetpris + " kr.");
@@ -202,24 +208,27 @@ public class Billetautomat {
                 nyLog.balanceNu = balance;
                 nyLog.solgteBilletterNu = antalBilletterSolgt;
                 log.add(nyLog);
+            } else {
+                System.out.println("Afvist - log ind først");
+            }
 	}
 
         /**
          * Nulstil antal solgte billetter
          */
 	public void nulstil() {
-		if (montørtilstand) {
-			antalBilletterSolgt = 0;
-                Log nyLog = new Log();
-                nyLog.tid = new Date();
-                nyLog.handling = ("Montør har nulstillet antal solgte billetter.");
-                nyLog.billetPrisNu = billetpris;
-                nyLog.balanceNu = balance;
-                nyLog.solgteBilletterNu = antalBilletterSolgt;
-                log.add(nyLog);
-		} else {
-			System.out.println("Afvist - log ind først");
-		}
+            if (montørtilstand) {
+                    antalBilletterSolgt = 0;
+            Log nyLog = new Log();
+            nyLog.tid = new Date();
+            nyLog.handling = ("Montør har nulstillet antal solgte billetter.");
+            nyLog.billetPrisNu = billetpris;
+            nyLog.balanceNu = balance;
+            nyLog.solgteBilletterNu = antalBilletterSolgt;
+            log.add(nyLog);
+            } else {
+                    System.out.println("Afvist - log ind først");
+            }
 	}
 
         /**
@@ -227,8 +236,8 @@ public class Billetautomat {
          * @param antalBilletterSolgt 
          */
 	public void setAntalBilletterSolgt(int antalBilletterSolgt) {
-		if (montørtilstand) {
-			this.antalBilletterSolgt = antalBilletterSolgt;
+            if (montørtilstand) {
+                this.antalBilletterSolgt = antalBilletterSolgt;
                 Log nyLog = new Log();
                 nyLog.tid = new Date();
                 nyLog.handling = ("Montør har sat antal solgte billetter til: " + antalBilletterSolgt);
@@ -236,9 +245,9 @@ public class Billetautomat {
                 nyLog.balanceNu = balance;
                 nyLog.solgteBilletterNu = antalBilletterSolgt;
                 log.add(nyLog);
-		} else {
-			System.out.println("Afvist - log ind først");
-		}
+            } else {
+                System.out.println("Afvist - log ind først");
+            }
 	}
 
         /**
